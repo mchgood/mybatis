@@ -192,7 +192,6 @@ public class SqlSessionTest extends BaseDataTest {
         try {
             AuthorMapper authorMapper = session.getMapper(AuthorMapper.class);
             List<Author> authors = authorMapper.selectAllAuthors();
-            session.selectOne("org.apache.ibatis.domain.blog.mappers.AuthorMapper.selectAllAuthors");
         } finally {
             session.close();
         }
