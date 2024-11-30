@@ -20,25 +20,26 @@ import java.sql.Connection;
 /**
  * @author Clinton Begin
  */
+
 /**
  * 事务隔离级别，是一个枚举型
- *
  */
 public enum TransactionIsolationLevel {
-	//包括JDBC支持的5个级别
-  NONE(Connection.TRANSACTION_NONE),
-  READ_COMMITTED(Connection.TRANSACTION_READ_COMMITTED),
-  READ_UNCOMMITTED(Connection.TRANSACTION_READ_UNCOMMITTED),
-  REPEATABLE_READ(Connection.TRANSACTION_REPEATABLE_READ),
-  SERIALIZABLE(Connection.TRANSACTION_SERIALIZABLE);
+    //包括JDBC支持的5个级别
+    NONE(Connection.TRANSACTION_NONE),                          // 无隔离级别，最低的隔离级别，允许脏读、不可重复读和幻读
+    READ_COMMITTED(Connection.TRANSACTION_READ_COMMITTED),      // 读已提交，允许不可重复读和幻读，但不允许脏读
+    READ_UNCOMMITTED(Connection.TRANSACTION_READ_UNCOMMITTED),  // 读未提交，允许脏读、不可重复读和幻读
+    REPEATABLE_READ(Connection.TRANSACTION_REPEATABLE_READ),    // 可重复读，允许幻读，但不允许脏读和不可重复读
+    SERIALIZABLE(Connection.TRANSACTION_SERIALIZABLE);          // 串行化，最高的隔离级别，不允许脏读、不可重复读和幻读
 
-  private final int level;
 
-  private TransactionIsolationLevel(int level) {
-    this.level = level;
-  }
+    private final int level;
 
-  public int getLevel() {
-    return level;
-  }
+    private TransactionIsolationLevel(int level) {
+        this.level = level;
+    }
+
+    public int getLevel() {
+        return level;
+    }
 }
